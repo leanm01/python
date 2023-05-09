@@ -23,7 +23,6 @@ def stark_normalizar_datos(lista_heroes:list)->list:
      
     return lista_heroes 
     
- 
 def obtener_nombre(lista_heroes:dict):
     """
     obtiene el nombre del personaje
@@ -39,13 +38,27 @@ def imprimir_dato(cadena: str):
     """
     print(cadena)
 
+
+def stark_imprimir_nombres_heroes(heroes:str):
+    if not heroes:
+        return -1
+    else:
+        for heroe in heroes:
+            nombre = obtener_nombre(heroe)
+            print(nombre)
+
+def obtener_nombre_y_dato(heroe, dato):
+    nombre = heroe.get('nombre', '')
+    valor = dato.get('fuerza', '')
+    return f"Nombre: {nombre} | {dato}: {valor}"
+
 while True:
     
-    print("0.1.normalizar datos")
-    print("1.1.obtener nombre")
-    print("1.2.imprimir datos")
-    print("4.")
-    print("5.")
+    print("1.normalizar datos")
+    print("2.obtener nombre")
+    print("3.imprimir datos")
+    print("4.imprimir nombres")
+    print("5.obtiene el nombre y un dato")
     print("6.")
     print("7.")
     print("8.")
@@ -78,12 +91,13 @@ while True:
        
     elif opcion == "4":
         
-        pass
-        
+       dato = stark_imprimir_nombres_heroes(lista_personajes)
+       print(dato)
        
     elif opcion == "5":
         
-        pass
+        obtener_nombre_y_dato(lista_personajes, dato)
+        
         
     elif opcion == "6":
        
