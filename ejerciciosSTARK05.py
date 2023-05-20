@@ -1,6 +1,17 @@
 import re
 import json
 
+def parse_json(nombre_archivo:str):
+    lista = []
+    with open(nombre_archivo, "r") as archivo:
+        dict = json.load(archivo)
+        lista = dict["heroes"]
+        
+    return lista
+
+
+lista_heroes = parse_json("C:/Users/Leandro/Desktop/pruebapy/data_stark.json")
+
 def imprimir_dato(dato:str)->None:
     print(dato)
 
@@ -95,13 +106,15 @@ def stark_marvel_app_5():
     return
 
 #1.4
-def leer_archivo(nombre_archivo):
+def leer_archivo(nombre_archivo:str):
     '''
     lee un archivo json
     '''
     with open(nombre_archivo, 'r') as archivo:
         contenido = json.load(archivo)
     return contenido
+
+
 
 #1.5    
 def guardar_archivo(nombre_archivo:str, contenido:str):
@@ -144,7 +157,7 @@ def obtener_nombre_capitalizado(heroe:str):
 
 #1.8 
 
-def obtener_dato_y_dato(heroe, key:str):
+def obtener_dato_y_dato(heroe:str, key:str):
     '''
     devuelve los datos de un heroe
     '''
@@ -159,7 +172,7 @@ def obtener_dato_y_dato(heroe, key:str):
 
 #2.1
 
-def es_genero(heroe, genero):
+def es_genero(heroe:str, genero:str):
     """
     Determina si un héroe es del género buscado
     diccionario que representa al héroe
@@ -172,7 +185,7 @@ def es_genero(heroe, genero):
     
 #2.2
 
-def stark_guardar_heroe_genero(heroes, genero ):
+def stark_guardar_heroe_genero(heroes:str, genero:str):
     '''
     reutiliza otra funciones 
     guarda archivos 
@@ -183,8 +196,10 @@ def stark_guardar_heroe_genero(heroes, genero ):
             nombre = capitalizar_palabras(heroe['nombre'])
             nombres.append(nombre)
             print(obtener_nombre_capitalizado(heroe), "|", imprimir_dato(heroe, 'genero'))
+            
     nombre_archivo = f"heroes_{genero}.csv"
-    return guardar_archivo(nombre_archivo, nombres)
+    archivos_guardados = guardar_archivo(nombre_archivo, nombres)
+    return archivos_guardados
 
 #TERCERA PARTE 
 
@@ -233,5 +248,9 @@ def calcular_max_genero(heroes, key, genero):
                 max_valor = valor_actual
                 max_heroe = heroe
     
-    return obtener_nombre_capitalizado(max_heroe)
+    nombre_obtenido = obtener_nombre_capitalizado(max_heroe)
     
+    return nombre_obtenido
+    
+lista_personajes = leer_archivo("C:/Users/Leandro/Desktop/pruebapy/data_stark.json")
+print(lista_personajes)
